@@ -11,7 +11,9 @@ export default async (request, context) => {
 
   try {
     // Fetch the post data from your API
-    const r = await fetch(`${context.env.API_URL}/api/posts/${postId}`);
+    const r = await fetch(
+      `${context.env?.API_URL || "http://localhost:3001"}/api/posts/${postId}`
+    );
 
     if (!r.ok) {
       throw new Error(`API responded with status ${r.status}`);
@@ -23,7 +25,9 @@ export default async (request, context) => {
       return new Response("Post not found", { status: 404 });
     }
 
-    const ogImageUrl = `${context.env.API_URL}/og-image/${post.id}`;
+    const ogImageUrl = `${
+      context.env?.API_URL || "http://localhost:3001"
+    }/og-images/image-${post.id}.png`;
 
     const ogTags = `
         <meta property="og:title" content="${escapeHtml(post.title)}" />

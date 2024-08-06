@@ -3,9 +3,12 @@
   publish = "dist"
 
 [[edge_functions]]
-function = "ssr-og-tags"
-path = "/hello"
+  function = "generate-og-image"
+  path = "/generate-og-image"
 
+[[edge_functions]]
+function = "ssr-og-tags"
+path = "/post/*"
 
 [[redirects]]
   from = "/*"

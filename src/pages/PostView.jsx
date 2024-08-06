@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet";
 
 const PostView = () => {
   console.log("hereeeeeeeeeeeeeeeeeeeeeee");
+
   const [post, setPost] = useState(null);
   const { id } = useParams();
 
@@ -29,7 +30,13 @@ const PostView = () => {
   if (!post) {
     return <div>Loading...</div>;
   }
-
+  const ogImageUrl = `${
+    window.location.origin
+  }/generate-og-image?title=${encodeURIComponent(
+    post.title
+  )}&description=${encodeURIComponent(
+    post.description
+  )}&imageUrl=${encodeURIComponent("http://localhost:3001" + post.imageUrl)}`;
   return (
     <div>
       <Helmet>
@@ -47,10 +54,12 @@ const PostView = () => {
           name="twitter:description"
           content={post.content.substring(0, 200)}
         />
-        <meta
+
+        <meta name="twitter:image" content={ogImageUrl} />
+        {/* <meta
           name="twitter:image"
           content={`http://localhost:3001${post.image}`}
-        />
+        /> */}
 
         <meta
           property="og:url"
@@ -62,10 +71,11 @@ const PostView = () => {
           property="og:description"
           content={post.content.substring(0, 200)}
         />
-        <meta
+        {/* <meta
           property="og:image"
           content={`http://localhost:3001${post.image}`}
-        />
+        /> */}
+        <meta property="og:image" content={ogImageUrl} />
 
         {/* <meta
           property="og:image"
