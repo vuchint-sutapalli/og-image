@@ -1,13 +1,17 @@
 // netlify/edge-functions/ssr-og-tags.js
 export default async (request, context) => {
+  console.log("entered middleware");
   const url = new URL(request.url);
 
   // Only intercept requests for blog post pages
   if (!url.pathname.startsWith("/post/")) {
+    console.log("not a post page");
     return context.next();
   }
 
   const postId = url.pathname.split("/")[2];
+
+  console.log(`post id ${postId}`);
 
   try {
     // Fetch the post data from your API
@@ -25,9 +29,34 @@ export default async (request, context) => {
       return new Response("Post not found", { status: 404 });
     }
 
+    console.log("data fetched", post);
+
     const ogImageUrl = `${
       context.env?.API_URL || "http://localhost:3001"
     }/og-images/image-${post.id}.png`;
+
+    //   const ogTags = `
+    //   <title>{post.title}</title>
+    //   <meta name="description" content={post.content.substring(0, 200)} />
+    //   <meta name="twitter:card" content="summary_large_image" />
+    //   <meta property="twitter:domain" content={url.href} />
+    //   <meta name="twitter:title" content={post.title} />
+    //   <meta
+    //     name="twitter:description"
+    //     content={post.content.substring(0, 200)}
+    //   />
+    //   <meta
+    //     name="twitter:image"
+    //     content={ogImageUrl}
+    //   />
+    //   <meta property="og:title" content="${escapeHtml(post.title)}" />
+    //   <meta property="og:description" content="${escapeHtml(
+    //     post.content.substring(0, 200)
+    //   )}" />
+    //   <meta property="og:image" content="${ogImageUrl}" />
+    //   <meta property="og:url" content="${url.href}" />
+    //   <meta property="og:type" content="article" />
+    // `;
 
     const ogTags = `
         <meta property="og:title" content="${escapeHtml(post.title)}" />

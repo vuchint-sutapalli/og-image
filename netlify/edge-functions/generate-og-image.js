@@ -1,5 +1,5 @@
 // netlify/edge-functions/generate-og-image.js
-export default async (request) => {
+export default (request) => {
   const { searchParams, href } = new URL(request.url);
   const title = searchParams.get("title") || "Default Title";
   const description = searchParams.get("description") || "Default Description";

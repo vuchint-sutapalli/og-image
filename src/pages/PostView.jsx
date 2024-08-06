@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
@@ -30,16 +30,16 @@ const PostView = () => {
   if (!post) {
     return <div>Loading...</div>;
   }
-  const ogImageUrl = `${
-    window.location.origin
-  }/generate-og-image?title=${encodeURIComponent(
-    post.title
-  )}&description=${encodeURIComponent(
-    post.description
-  )}&imageUrl=${encodeURIComponent("http://localhost:3001" + post.imageUrl)}`;
+  // const ogImageUrl = `${
+  //   window.location.origin
+  // }/generate-og-image?title=${encodeURIComponent(
+  //   post.title
+  // )}&description=${encodeURIComponent(
+  //   post.content
+  // )}&imageUrl=${encodeURIComponent("http://localhost:3001" + post.ogImage)}`;
   return (
     <div>
-      <Helmet>
+      {/* <Helmet>
         <title>{post.title}</title>
         <meta name="description" content={post.content.substring(0, 200)} />
 
@@ -54,12 +54,10 @@ const PostView = () => {
           name="twitter:description"
           content={post.content.substring(0, 200)}
         />
-
-        <meta name="twitter:image" content={ogImageUrl} />
-        {/* <meta
+        <meta
           name="twitter:image"
-          content={`http://localhost:3001${post.image}`}
-        /> */}
+          content={`http://localhost:3001${post.ogImage}`}
+        />
 
         <meta
           property="og:url"
@@ -71,22 +69,11 @@ const PostView = () => {
           property="og:description"
           content={post.content.substring(0, 200)}
         />
-        {/* <meta
-          property="og:image"
-          content={`http://localhost:3001${post.image}`}
-        /> */}
-        <meta property="og:image" content={ogImageUrl} />
-
-        {/* <meta
-          property="og:image"
-          content={`http://localhost:3001${post.image}`}
-        />
         <meta
-          property="og:url"
-          content={`https://${window.location.hostname}/post/${post.id}`}
+          property="og:image"
+          content={`http://localhost:3001${post.ogImage}`}
         />
-        <meta property="og:type" content="article" /> */}
-      </Helmet>
+      </Helmet> */}
       <h1 className="text-3xl font-bold mb-4">{post.title}</h1>
       <img
         src={`http://localhost:3001${post.image}`}
