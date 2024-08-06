@@ -12,7 +12,7 @@ const PostView = () => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/posts/${id}`);
+        const response = await fetch(`http://localhost:3001/api/posts/${id}`);
         if (!response.ok) {
           throw new Error("Failed to fetch post");
         }
@@ -49,7 +49,7 @@ const PostView = () => {
         />
         <meta
           name="twitter:image"
-          content={`http://localhost:3000${post.image}`}
+          content={`http://localhost:3001${post.image}`}
         />
 
         <meta
@@ -64,12 +64,12 @@ const PostView = () => {
         />
         <meta
           property="og:image"
-          content={`http://localhost:3000${post.image}`}
+          content={`http://localhost:3001${post.image}`}
         />
 
         {/* <meta
           property="og:image"
-          content={`http://localhost:3000${post.image}`}
+          content={`http://localhost:3001${post.image}`}
         />
         <meta
           property="og:url"
@@ -79,7 +79,7 @@ const PostView = () => {
       </Helmet>
       <h1 className="text-3xl font-bold mb-4">{post.title}</h1>
       <img
-        src={`http://localhost:3000${post.image}`}
+        src={`http://localhost:3001${post.image}`}
         alt={post.title}
         className="mb-4 max-w-full h-auto"
       />

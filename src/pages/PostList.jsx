@@ -7,7 +7,7 @@ const PostList = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/posts");
+        const response = await fetch("http://localhost:3001/api/posts");
         if (!response.ok) {
           throw new Error("Failed to fetch posts");
         }

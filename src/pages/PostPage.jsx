@@ -27,7 +27,7 @@ const PostPage = () => {
 
   const generateOgImage = async () => {
     try {
-      const response = await fetch("http://localhost:3000/generate-og-image", {
+      const response = await fetch("http://localhost:3001/generate-og-image", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -132,7 +132,7 @@ const PostPage = () => {
         </div>
         {ogImage && (
           <img
-            src={`http://localhost:3000${ogImage}`}
+            src={`http://localhost:3001${ogImage}`}
             alt="Uploaded"
             className="max-w-full h-auto mb-4 rounded"
           />

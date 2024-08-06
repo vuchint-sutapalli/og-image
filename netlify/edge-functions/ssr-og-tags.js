@@ -39,6 +39,8 @@ export default async (request, context) => {
     const response = await context.next();
     const html = await response.text();
 
+    console.log(html);
+
     const updatedHtml = html.replace("</head>", `${ogTags}</head>`);
 
     return new Response(updatedHtml, {
